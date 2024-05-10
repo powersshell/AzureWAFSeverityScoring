@@ -31,6 +31,8 @@ param (
     $tableName
 )
 
+Connect-AzAccount -Identity
+
 # Import the Az module
 Import-Module Az.Accounts
 
