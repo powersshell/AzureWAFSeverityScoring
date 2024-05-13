@@ -1,0 +1,8 @@
+AzureDiagnostics |
+where Category == "ApplicationGatewayFirewallLog"
+| where transactionId_g contains "b818174d-15fb-2c11-cc21-c51b364b87b7" // Change the transactionId to your transactionId
+| join kind=innerunique  (
+workspace('wafdemo').WAFRuleSecurity_CL // Change the workspace name to your workspace
+| where TimeGenerated > ago(30d)
+) on $left.ruleId_s == $right.ruleId
+| project ruleId_s, Message, requestUri_s, clientIp_s, ruleSetVersion_s, ruleSeverity, ruleScore
