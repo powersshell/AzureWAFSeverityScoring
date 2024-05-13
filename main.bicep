@@ -149,8 +149,7 @@ resource schedule 'Microsoft.Automation/automationAccounts/schedules@2023-11-01'
   properties: {
     startTime: dateTimeAdd(scheduledRunbookTime, 'PT15M')
     frequency: 'OneTime'
-    
-  }
+   }
 
 }
 
