@@ -2,6 +2,7 @@ param logAnalyticsWorkspaceName string
 param dataCollectionEndpointName string
 param dataCollectionRuleName string
 param customTableName string
+param automationAccountName string
 param location string = resourceGroup().location
 
 var updatedCustomTableName = 'Custom-${customTableName}_CL'
@@ -108,7 +109,7 @@ resource customTable 'Microsoft.OperationalInsights/workspaces/tables@2022-10-01
 }
 
 resource automationAccount 'Microsoft.Automation/automationAccounts@2023-11-01' = {
-  name: 'automationaccount'
+  name: automationAccountName
   location: location
   identity: {
     type: 'SystemAssigned'
